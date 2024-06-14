@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'gender',
+        'phone'
     ];
 
     /**
@@ -42,4 +44,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+
+    public function reservation(){
+        return $this->hasMany(User::class);
+        }
+
+        public function User(){
+            return $this->Hasmany(Rating::class,'user_id');
+            }
+
+
+            public function favoritehotels(){
+                return   $this->hasMany(Favorite::class,'user_id');
+               }
+
+
+               public function getgender(){
+                return   $this->gender == 0 ?'Male':'Female' ;
+               }
+
+
 }
