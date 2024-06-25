@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+use Laravel\Passport\HasApiTokens;
 
 class Hotel extends Authenticatable
 {
-    use HasFactory,Translatable;
+    use HasFactory,Translatable,HasApiTokens;
 
     protected $with = ['translations'];
 
     protected $translatedAttributes=['name'];
 
-    protected $fillable = ['photo','city_id','email','phone','rooms_number','floor_number','password','active'];
+    protected $fillable = ['photo','city_id','email','phone','password','active'];
 
 
     protected $timestamp=false;

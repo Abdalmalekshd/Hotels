@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserRequest extends FormRequest
+class UpdateAttachmentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,12 +24,27 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      =>'required|string|min:4',
-            'email'     =>'required|email|ends_with:.com',
-            'password'  =>'required|min:6',
-            'phone'     =>'required|starts_with:+',
-            'gender'    =>'required|in:0,1'
+            'attach_id'         =>'exists:attachments,id',
+            'name_en'           =>'string|unique:Attachments,name_en,'.$this->id,
+            'name_ar'           =>'string|unique:Attachments,name_ar,'.$this->id,
+            'slug'              =>'string',
+            'attachment_level'  =>'in:0,1'
 
+        ];
+    }
+
+
+
+    public function messages(): array
+    {
+        return [
+            'attach_id.exists'       => __('admin.attachexist'),
+
+            'name_en.string'            => __('admin.namestr'),
+            'name_en.unique'            => __('admin.nameuni'),
+            'name_ar.string'            => __('admin.namestr'),
+            'name_ar.unique'            => __('admin.nameuni'),
+            'slug.unique'               => __('admin.slugreq'),
 
         ];
     }

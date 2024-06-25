@@ -50,6 +50,26 @@ return [
             'driver' => 'session',
             'provider' => 'hotels',
         ],
+
+
+
+
+    'api' => [
+        'driver' => 'passport',
+        'provider' => 'users',
+    ],
+
+    'adminapi' => [
+            'driver' => 'passport',
+            'provider' => 'admins',
+        ],
+
+
+        'hotelapi' => [
+            'driver' => 'passport',
+            'provider' => 'hotels',
+        ],
+
     ],
 
     /*

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserRequest extends FormRequest
+class UpdateCountryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,18 +24,29 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'      =>'required|string|min:4',
-            'email'     =>'required|email|ends_with:.com',
-            'password'  =>'required|min:6',
-            'phone'     =>'required|starts_with:+',
-            'gender'    =>'required|in:0,1'
-
+            'id'        =>'exists:countries,id',
+            'name'   =>'string|unique:country_translations,name,'.$this->id,
 
         ];
     }
 
 
-    public function failedValidation(Validator $validator)
+    public function messages(): array
+    {
+        return [
+            'name.required'          => __('admin.namereq'),
+            'name.string'            => __('admin.namestr'),
+            'name.unique'            => __('admin.nameuni'),
+
+
+
+
+
+
+        ];
+    }
+
+     public function failedValidation(Validator $validator)
     {
         $errors = $validator->errors(); // Here is your array of errors
         $response = response()->json([
@@ -44,4 +55,5 @@ class UserRequest extends FormRequest
         ], 422);
         throw new HttpResponseException($response);
     }
+
 }
