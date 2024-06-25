@@ -101,7 +101,7 @@ Route::group(['prefix'=>'Hotels/admin'],function(){
 
         Route::get('delete_hotel/{id}','HotelsController@DeleteHotels')->name('delete.hotel');
 
-        Route::get('/hotel/{id}','HotelsController@GetHotelById')->name('get.single.hotel');
+        // Route::get('/hotel/{id}','HotelsController@GetHotelById')->name('get.single.hotel');
 
         Route::get('activate/{id}','HotelsController@ActivateHotel')->name('activate.hotel');
 
@@ -110,11 +110,10 @@ Route::group(['prefix'=>'Hotels/admin'],function(){
 
     //End Hotel Routes
 
+
     //Start Attachment Routes
 
     Route::get('Attachment','AttachmentsController@GetAttachments')->name('get.attachments');
-
-
 
     Route::get('Add_Attachment','AttachmentsController@AddAttachments')->name('add.attachments');
 
@@ -129,7 +128,8 @@ Route::group(['prefix'=>'Hotels/admin'],function(){
 
 
 
-    //Start Attachment Routes
+    //End Attachment Routes
+
 
     Route::get('Delete_User/{id}','DashboardController@DeleteUser')->name('delete.user');
 
