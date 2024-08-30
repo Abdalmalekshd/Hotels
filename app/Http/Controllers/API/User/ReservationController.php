@@ -30,7 +30,7 @@ class ReservationController extends ResponseController
 
             DB::beginTransaction();
             //Check if this user already booked this room
-                $previusreserve=Reservation::where('hotel_id',$request->hotel_id)->
+            $previusreserve=Reservation::where('hotel_id',$request->hotel_id)->
             where('room_id',$request->room_id)->where('user_id',Auth::user()->id)->
             where('reservations_start_date',$request->start_date)->
             where('reservations_end_date' ,$request->end_date)->first();

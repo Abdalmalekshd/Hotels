@@ -16,11 +16,11 @@ class DashboardController extends Controller
     public function Dashboard(){
         $data[]='';
         //Count Query
-         $data['countrynumber']= Country::get()->count();
-         $data['citynumber']= City::get()->count();
-         $data['hotelnumber']= Hotel::get()->count();
-        $data['attachnumber']=Attachment::get()->count();
-        $data['usersnumber']=User::get()->count();
+         $data['countrynumber']= Country::count();
+         $data['citynumber']= City::count();
+         $data['hotelnumber']= Hotel::count();
+        $data['attachnumber']=Attachment::count();
+        $data['usersnumber']=User::count();
 
          //Data Query
         $data['Countries']=Country::limit(5)->OrderByDesc('id')->withcount('cities')->get();
